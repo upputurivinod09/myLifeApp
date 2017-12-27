@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {Link} from 'react-router';
 
 
 const PersonList = ({persons}) => {
@@ -13,7 +14,7 @@ const PersonList = ({persons}) => {
       <tbody>
         {persons.map(person =>
           <tr key={person.firstName}>
-            <td>{person.firstName}</td>
+            <td><Link to={'/person/' + person.firstName}>{person.firstName}</Link></td>
             <td>{person.lastName}</td>
           </tr>
         )}

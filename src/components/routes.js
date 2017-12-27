@@ -10,6 +10,6 @@ export default (
 			<IndexRoute component={HomePage} />
       <Route path="persons" components={PersonsPage}/>
       <Route path="addPerson" components={ManagePersonPage}/>
-      <Route path="person/:id" components={ManagePersonPage}/>
+      <Route path="person/:firstName" components={ManagePersonPage}/>
 		</Route>
 	);

@@ -77,6 +77,15 @@ class PersonApi {
       }, delay);
     });
   }
+
+  static loadPersonByFirstName(personFirstName) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const person = persons.filter(person => personFirstName == person.firstName);
+        resolve(Object.assign([], person[0]));
+      }, delay);
+    });
+  }
 }
 
 export default PersonApi;

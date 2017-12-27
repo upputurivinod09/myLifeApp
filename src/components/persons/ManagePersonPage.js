@@ -12,13 +12,24 @@ class ManagePersonPage extends React.Component {
 
     this.state = {
       person: Object.assign({}, this.props.person),
-      errors: {},
-      saving: false
+      errors: {}
     };
 
+    this.saving = false;
     this.onSave = this.onSave.bind(this);
     this.updatePersonState = this.updatePersonState.bind(this);
     this.redirectToPeronsPage = this.redirectToPeronsPage.bind(this);
+  }
+
+  componentWillMount() {
+    const personfirstName = this.props.params.firstName;
+    if(personfirstName != null) {
+      this.loadPersonByFirstName(personfirstName);
+    }
+  }
+
+  loadPersonByFirstName(personFirstName) {
+    this.props.actions.loadPersonByFirstName(personFirstName);
   }
 
   updatePersonState(event){
@@ -30,42 +41,46 @@ class ManagePersonPage extends React.Component {
   }
 
   redirectToPeronsPage() {
-    this.setState({saving: false});
+    this.saving = false;
     toastr.success('Person Saved.');
     browserHistory.push("/persons");
   }
 
-  onSave(){
+  onSave(event){
     event.preventDefault();
     this.setState({saving: true});
     this.props.actions.savePerson(this.state.person)
       .then(() => this.redirectToPeronsPage())
       .catch(error => {
         toastr.error(error);
-        this.setState({saving: false});
+        this.saving = false;
       });
   }
 
   render() {
     return (
       <PersonForm
-        allPersons={this.props.persons}
         onChange={this.updatePersonState}
         onSave={this.onSave}
-        person={this.state.person}
+        person={this.props.person}
         errors={this.state.errors}
-        saving={this.state.saving}
+        saving={this.saving}
       />
     );
   }
-
 }
+
+ManagePersonPage.propTypes = {
+  person: PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
+};
 
 function mapStateToProps(state, ownProps) {
   let person = {id: '', firstName: '', lastName: ''};
 
   return {
-    person: person
+    person: state.person
   };
 }
 

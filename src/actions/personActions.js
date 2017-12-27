@@ -35,3 +35,20 @@ export function savePerson(person) {
     });
   };
 }
+
+export function loadPersonByFirstNameSuccess(person) {
+  return {
+    type: types.LOAD_PERSON_BY_FIRST_NAME_SUCCESS, person
+  };
+}
+
+export function loadPersonByFirstName(personFirstName) {
+  return dispatch => {
+    dispatch(beginAjaxCall());
+    return PersonApi.loadPersonByFirstName(personFirstName).then(person => {
+      dispatch(loadPersonByFirstNameSuccess(person));
+    }).catch(error => {
+      throw (error);
+    });
+  };
+}
