@@ -62,7 +62,7 @@ class ManagePersonPage extends React.Component {
       <PersonForm
         onChange={this.updatePersonState}
         onSave={this.onSave}
-        person={this.props.person}
+        person={this.state.person}
         errors={this.state.errors}
         saving={this.saving}
       />

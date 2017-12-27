@@ -51,8 +51,8 @@ class PersonApi {
         }
 
         if (person.id) {
-          const existingAuthorIndex = person.findIndex(a => a.id == person.id);
-          persons.splice(existingAuthorIndex, 1, person);
+          const existingPersonIndex = persons.findIndex(a => a.id == person.id);
+          persons.splice(existingPersonIndex, 1, person);
         } else {
           //Just simulating creation here.
           //The server would generate ids for new authors in a real app.
@@ -61,7 +61,7 @@ class PersonApi {
           persons.push(person);
         }
 
-        resolve(person);
+        resolve(persons);
       }, delay);
     });
   }
