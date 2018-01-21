@@ -61,7 +61,7 @@ class PersonApi {
           persons.push(person);
         }
 
-        resolve(persons);
+        resolve(person);
       }, delay);
     });
   }

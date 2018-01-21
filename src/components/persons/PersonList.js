@@ -14,7 +14,7 @@ const PersonList = ({persons}) => {
       <tbody>
         {persons.map(person =>
           <tr key={person.firstName}>
-            <td><Link to={'/person/' + person.firstName}>{person.firstName}</Link></td>
+            <td><Link to={'/person/' + person.id}>{person.firstName}</Link></td>
             <td>{person.lastName}</td>
           </tr>
         )}

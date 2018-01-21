@@ -8,13 +8,15 @@ const PersonForm = ({person, onSave, onChange, errors, saving}) => {
           name="firstName"
           label="First Name"
           value={person.firstName}
-          onChange={onChange} />
+          onChange={onChange}
+          error={errors.firstName}/>
 
         <TextInput
           name="lastName"
           label="Last Name"
           value={person.lastName}
-          onChange={onChange} />
+          onChange={onChange}
+          error={errors.lastName}/>
 
         <input type="submit" disabled={saving} value={saving ? 'Saving..' : 'Save'} className="btn btn-default" onClick={onSave}/>
       </form>

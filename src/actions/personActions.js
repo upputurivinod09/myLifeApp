@@ -8,15 +8,15 @@ export function loadPersonsSuccess(persons) {
   };
 }
 
-export function savePersonSuccess(persons) {
+export function savePersonSuccess(savedPerson) {
   return {
-    type: types.SAVE_PERSON_SUCCESS, persons
+    type: types.SAVE_PERSON_SUCCESS, savedPerson
   };
 }
 
-export function updatePersonSuccess(persons) {
+export function updatePersonSuccess(updatedPerson) {
   return {
-    type: types.UPDATE_PERSON_SUCCESS, persons
+    type: types.UPDATE_PERSON_SUCCESS, updatedPerson
   };
 }
 
@@ -34,8 +34,8 @@ export function loadPersons() {
 export function savePerson(person) {
   return dispatch => {
     dispatch(beginAjaxCall());
-    return PersonApi.savePerson(person).then(persons => {
-      person.id ? dispatch(updatePersonSuccess(persons)) : dispatch(savePersonSuccess(persons));
+    return PersonApi.savePerson(person).then(person => {
+      person.id ? dispatch(updatePersonSuccess(person)) : dispatch(savePersonSuccess(person));
     }).catch(error => {
       throw (error);
     });

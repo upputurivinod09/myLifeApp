@@ -11,7 +11,7 @@ class ManagePersonPage extends React.Component {
     super(props, context);
 
     this.state = {
-      person: Object.assign({}, this.props.person),
+      person: Object.assign({}, props.person),
       errors: {}
     };
 
@@ -21,11 +21,10 @@ class ManagePersonPage extends React.Component {
     this.redirectToPeronsPage = this.redirectToPeronsPage.bind(this);
   }
 
-  componentWillMount() {
-    const personfirstName = this.props.params.firstName;
-    if(personfirstName != null) {
-      this.loadPersonByFirstName(personfirstName);
-    }
+  componentWillReceiveProps(nextProps) {
+   if(this.props.person.firstName !== nextProps.person.firstName) {
+     this.setState({person: Object.assign({}, nextProps.person)});
+   }
   }
 
   loadPersonByFirstName(personFirstName) {
@@ -76,11 +75,21 @@ ManagePersonPage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
+function getPersonById(persons, personId) {
+  const person = persons.filter(person => person.id === personId);
+  if(person) return person[0];
+  return null;
+}
+
 function mapStateToProps(state, ownProps) {
+  const personId = ownProps.params.id;
   let person = {id: '', firstName: '', lastName: ''};
+  if(personId && state.persons.length > 0){
+    person = getPersonById(state.persons, personId);
+  }
 
   return {
-    person: state.person
+    person: person
   };
 }
 
