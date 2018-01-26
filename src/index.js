@@ -9,9 +9,11 @@ import './styles/styles.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.css';
 import {loadPersons} from './actions/personActions';
+import {loadAddress} from "./actions/addressActions";
 
 const store = configureStore();
 store.dispatch(loadPersons());
+store.dispatch(loadAddress());
 //provider attaches store to react container components
 render (
     <Provider store={store}>
