@@ -6,6 +6,12 @@ export default function AddressReducer(state = initialState.addresses, action) {
     case types.LOAD_ADDRESS_SUCCESS:
       return action.addresses;
 
+    case types.SAVE_ADDRESS_SUCCESS:
+      return [...state, Object.assign([], action.address)];
+
+    case types.UPDATE_ADDRESS_SUCCESS:
+      return [...state.filter(address => address.id !== action.address.id), Object.assign({}, action.address)];
+
     default:
       return state;
   }

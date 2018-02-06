@@ -14,7 +14,7 @@ const addresses = [
     ZipCode: '77063',
     fromDate: '10/10/2017',
     toDate: '03/31/2018',
-    currentAddress: true
+    currentAddress: false
   },
   {
     id: 'AlanzaBrook-11309',
@@ -30,6 +30,9 @@ const addresses = [
   }
 ];
 
+const generateId = (address) => {
+  return address.AppartmentName.toLowerCase() + '-' + address.AppartmentNo;
+};
 
 class AddressApi {
   static getAllAddresses() {
@@ -39,6 +42,28 @@ class AddressApi {
       }, delay);
     });
   }
+
+  static saveAddress(address) {
+    address = Object.assign({}, address); // to avoid manipulating object passed in.
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+
+        if (address.id) {
+          const existingPersonIndex = addresses.findIndex(a => a.id == address.id);
+          addresses.splice(existingPersonIndex, 1, address);
+        } else {
+          //Just simulating creation here.
+          //The server would generate ids for new authors in a real app.
+          //Cloning so copy returned is passed by value rather than by reference.
+          address.id = generateId(address);
+          addresses.push(address);
+        }
+
+        resolve(address);
+      }, delay);
+    });
+  }
+
 }
 
 export default AddressApi;

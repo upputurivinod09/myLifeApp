@@ -45,17 +45,17 @@ class App extends React.Component {
                     onRightIconButtonClick={this.handleToggle}
             />
             <MenuItem onClick={this.handleToggle}><Link to="/persons" activeClassName="active">Persons</Link></MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}>details</MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}><Link to="/addresses" activeClassName="active">Address</Link></MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}>Empoyer</MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}>Education</MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}>Visa Status</MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}>Loans</MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}>Jobs</MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}>Insurances</MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}>Tickets</MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}>Medical</MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}>Tax</MenuItem>
+            <MenuItem onClick={this.handleToggle}>details</MenuItem>
+            <MenuItem onClick={this.handleToggle}><Link to="/addresses" activeClassName="active">Address</Link></MenuItem>
+            <MenuItem onClick={this.handleToggle}>Empoyer</MenuItem>
+            <MenuItem onClick={this.handleToggle}>Education</MenuItem>
+            <MenuItem onClick={this.handleToggle}>Visa Status</MenuItem>
+            <MenuItem onClick={this.handleToggle}>Loans</MenuItem>
+            <MenuItem onClick={this.handleToggle}>Jobs</MenuItem>
+            <MenuItem onClick={this.handleToggle}>Insurances</MenuItem>
+            <MenuItem onClick={this.handleToggle}>Tickets</MenuItem>
+            <MenuItem onClick={this.handleToggle}>Medical</MenuItem>
+            <MenuItem onClick={this.handleToggle}>Tax</MenuItem>
           </Drawer>
           <div>
             {this.props.children}

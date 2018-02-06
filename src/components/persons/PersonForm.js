@@ -27,6 +27,7 @@ PersonForm.propTypes = {
   person: PropTypes.object.isRequired,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  saving: PropTypes.bool.isRequired,
   errors: PropTypes.object
 };
 

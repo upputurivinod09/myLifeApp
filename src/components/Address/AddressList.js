@@ -29,7 +29,7 @@ const AddressList = ({addresses}) => {
           <td>{address.ZipCode}</td>
           <td>{address.fromDate}</td>
           <td>{address.toDate}</td>
-          <td>{address.currentAddress}</td>
+          <td><input name="currentAddress" type="checkbox" checked={address.currentAddress} readOnly/></td>
         </tr>
       )}
       </tbody>
