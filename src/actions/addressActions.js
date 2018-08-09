@@ -18,3 +18,26 @@ export function loadAddress() {
     });
   };
 }
+
+export function updateAddressSuccess(updatedAddress) {
+  return {
+    type: types.UPDATE_ADDRESS_SUCCESS, updatedAddress
+  };
+}
+
+export function saveAddressSuccess(savedAddress) {
+  return {
+    type: types.SAVE_ADDRESS_SUCCESS, savedAddress
+  };
+}
+
+export function saveAddress() {
+  return dispatch => {
+    dispatch(beginAjaxCall());
+    return AddressApi.saveAddress().then(address => {
+      address.id ? dispatch(updateAddressSuccess()) : dispatch(saveAddressSuccess());
+    } ).catch(error => {
+      throw (error);
+    });
+  };
+}

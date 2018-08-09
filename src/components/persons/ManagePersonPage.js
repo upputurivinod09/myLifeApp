@@ -27,10 +27,6 @@ class ManagePersonPage extends React.Component {
    }
   }
 
-  loadPersonByFirstName(personFirstName) {
-    this.props.actions.loadPersonByFirstName(personFirstName);
-  }
-
   updatePersonState(event){
     const field = event.target.name;
     const value = event.target.value;

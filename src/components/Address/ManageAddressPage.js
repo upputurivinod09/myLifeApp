@@ -24,8 +24,8 @@ class ManageAddressPage extends React.Component {
   updateAddressState(event){
     const field = event.target.name;
     const value = event.target.value;
-    let person = Object.assign({}, this.state.address);
-    person[field] = value;
+    let address = Object.assign({}, this.state.address);
+    address[field] = value;
     return this.setState({address: address});
   }
 

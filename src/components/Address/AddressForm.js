@@ -46,14 +46,14 @@ const AddressForm = ({address, onSave, onChange, errors, saving}) => {
           onChange={onChange}
           error={errors.ZipCode}/>
 
-        <Date
+        <input
           name="fromDate"
           label="fromDate"
           value={address.fromDate}
           onChange={onChange}
           error={errors.fromDate}/>
 
-        <Date
+        <input
           name="toDate"
           label="toDate"
           value={address.toDate}
@@ -73,10 +73,11 @@ const AddressForm = ({address, onSave, onChange, errors, saving}) => {
   };
 
 AddressForm.propTypes = {
-  person: PropTypes.object.isRequired,
+  address: PropTypes.object.isRequired,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  errors: PropTypes.object
+  errors: PropTypes.object,
+  saving: PropTypes.bool.isRequired
 };
 
 export default AddressForm;

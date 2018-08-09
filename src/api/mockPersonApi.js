@@ -28,11 +28,23 @@ const generateId = (person) => {
 
 class PersonApi {
   static getAllPersons() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(Object.assign([], persons));
-      }, delay);
-    });
+    let url = 'http://localhost:9200/person/getAllPersons';
+    return fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin':'',
+        'Content-Type':'application/json'
+      },
+      credentials: 'include'
+    })
+      .then(status)
+      .then(data => {
+        return data;
+      })
+      .catch(error => {
+        throw error;
+      });
   }
 
   static savePerson(person) {

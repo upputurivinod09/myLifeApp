@@ -29,7 +29,7 @@ const AddressList = ({addresses}) => {
           <td>{address.ZipCode}</td>
           <td>{address.fromDate}</td>
           <td>{address.toDate}</td>
-          <td>{address.currentAddress}</td>
+          <td>{String(address.currentAddress)}</td>
         </tr>
       )}
       </tbody>

@@ -46,7 +46,7 @@ class App extends React.Component {
             />
             <MenuItem onClick={this.handleToggle}><Link to="/persons" activeClassName="active">Persons</Link></MenuItem>
             <MenuItem onTouchTap={this.handleToggle}>details</MenuItem>
-            <MenuItem onTouchTap={this.handleToggle}><Link to="/addresses" activeClassName="active">Address</Link></MenuItem>
+            <MenuItem onTouchTap={this.handleToggle}><Link to="/addresses">Address</Link></MenuItem>
             <MenuItem onTouchTap={this.handleToggle}>Empoyer</MenuItem>
             <MenuItem onTouchTap={this.handleToggle}>Education</MenuItem>
             <MenuItem onTouchTap={this.handleToggle}>Visa Status</MenuItem>
