@@ -21,11 +21,11 @@ class ManagePersonPage extends React.Component {
     this.redirectToPeronsPage = this.redirectToPeronsPage.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-   if(this.props.person.firstName !== nextProps.person.firstName) {
-     this.setState({person: Object.assign({}, nextProps.person)});
-   }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //  if(this.props.person.firstName !== nextProps.person.firstName) {
+  //    this.setState({person: Object.assign({}, nextProps.person)});
+  //  }
+  // }
 
   updatePersonState(event){
     const field = event.target.name;
@@ -44,12 +44,21 @@ class ManagePersonPage extends React.Component {
   onSave(event){
     event.preventDefault();
     this.setState({saving: true});
-    this.props.actions.savePerson(this.state.person)
-      .then(() => this.redirectToPeronsPage())
-      .catch(error => {
-        toastr.error(error);
-        this.saving = false;
-      });
+    if(this.state.person.id == "") {
+      this.props.actions.savePerson(this.state.person)
+        .then(() => this.redirectToPeronsPage())
+        .catch(error => {
+          toastr.error(error);
+          this.saving = false;
+        });
+    } else {
+      this.props.actions.updatePerson(this.state.person)
+        .then(() => this.redirectToPeronsPage())
+        .catch(error => {
+          toastr.error(error);
+          this.saving = false;
+        });
+    }
   }
 
   render() {
@@ -66,7 +75,7 @@ class ManagePersonPage extends React.Component {
 }
 
 ManagePersonPage.propTypes = {
-  person: PropTypes.object.isRequired,
+  // person: PropTypes.object.isRequired,
   params: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };
@@ -79,7 +88,7 @@ function getPersonById(persons, personId) {
 
 function mapStateToProps(state, ownProps) {
   const personId = ownProps.params.id;
-  let person = {id: '', firstName: '', lastName: ''};
+  let person = {firstName: '', lastName: '', id: ''};
   if(personId && state.persons.length > 0){
     person = getPersonById(state.persons, personId);
   }

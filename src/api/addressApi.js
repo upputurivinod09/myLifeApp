@@ -14,7 +14,7 @@ const addresses = [
     ZipCode: '77063',
     fromDate: '10/10/2017',
     toDate: '03/31/2018',
-    currentAddress: true
+    currentAddress: false
   },
   {
     id: 'AlanzaBrook-11309',
@@ -26,12 +26,12 @@ const addresses = [
     ZipCode: '77063',
     fromDate: '10/10/2017',
     toDate: '03/31/2018',
-    currentAddress: false
+    currentAddress: true
   }
 ];
 
 const generateId = (address) => {
-  return address.AppartmentName.toLowerCase() + '-' + address.AppartmentNo.toLowerCase();
+  return address.AppartmentName.toLowerCase() + '-' + address.AppartmentNo;
 };
 
 class AddressApi {
@@ -44,15 +44,13 @@ class AddressApi {
   }
 
   static saveAddress(address) {
-    address = Object.assign({}, address);
+    address = Object.assign({}, address); // to avoid manipulating object passed in.
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log("Address"+address);
-        // Simulate server-side validation
 
         if (address.id) {
-          const existingAddressIndex = addresses.findIndex(a => a.id == address.id);
-          addresses.splice(existingAddressIndex, 1, address);
+          const existingPersonIndex = addresses.findIndex(a => a.id == address.id);
+          addresses.splice(existingPersonIndex, 1, address);
         } else {
           //Just simulating creation here.
           //The server would generate ids for new authors in a real app.
@@ -65,8 +63,7 @@ class AddressApi {
       }, delay);
     });
   }
+
 }
-
-
 
 export default AddressApi;

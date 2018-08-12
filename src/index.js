@@ -12,9 +12,6 @@ import {loadPersons} from './actions/personActions';
 import {loadAddress} from "./actions/addressActions";
 
 const store = configureStore();
-store.dispatch(loadPersons());
-store.dispatch(loadAddress());
-//provider attaches store to react container components
 render (
     <Provider store={store}>
         <Router history={browserHistory} routes={routes} />

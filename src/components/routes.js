@@ -10,6 +10,7 @@ import ManageAddressPage from "./Address/ManageAddressPage";
 export default (
 		<Route path="/" component={App}>
 			<IndexRoute component={HomePage} />
+      <Route path="/myLifeApp-ui/index.html" components={HomePage}/>
       <Route path="persons" components={PersonsPage}/>
       <Route path="addPerson" components={ManagePersonPage}/>
       <Route path="person/:id" components={ManagePersonPage}/>

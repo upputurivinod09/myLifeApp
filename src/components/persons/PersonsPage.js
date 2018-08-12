@@ -7,6 +7,10 @@ import {bindActionCreators} from 'redux';
 
 class PersonPage extends React.Component {
 
+  componentDidMount() {
+    this.props.actions.loadPersons();
+  }
+
   redirectToAddPersonPage() {
     browserHistory.push("/addPerson");
   }

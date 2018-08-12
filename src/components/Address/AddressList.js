@@ -29,7 +29,7 @@ const AddressList = ({addresses}) => {
           <td>{address.ZipCode}</td>
           <td>{address.fromDate}</td>
           <td>{address.toDate}</td>
-          <td>{String(address.currentAddress)}</td>
+          <td><input name="currentAddress" type="checkbox" checked={address.currentAddress} readOnly/></td>
         </tr>
       )}
       </tbody>
@@ -42,4 +42,3 @@ AddressList.propTypes = {
 };
 
 export default AddressList;
-

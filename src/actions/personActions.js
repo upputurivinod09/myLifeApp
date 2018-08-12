@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import PersonApi from "../api/mockPersonApi";
+import PersonApi from "../api/personApi";
 import {beginAjaxCall} from './ajaxStatusActions';
 
 export function loadPersonsSuccess(persons) {
@@ -8,15 +8,15 @@ export function loadPersonsSuccess(persons) {
   };
 }
 
-export function savePersonSuccess(savedPerson) {
+export function savePersonSuccess(savedPersonList) {
   return {
-    type: types.SAVE_PERSON_SUCCESS, savedPerson
+    type: types.SAVE_PERSON_SUCCESS, savedPersonList
   };
 }
 
-export function updatePersonSuccess(updatedPerson) {
+export function updatePersonSuccess(updatedPersonList) {
   return {
-    type: types.UPDATE_PERSON_SUCCESS, updatedPerson
+    type: types.UPDATE_PERSON_SUCCESS, updatedPersonList
   };
 }
 
@@ -34,8 +34,19 @@ export function loadPersons() {
 export function savePerson(person) {
   return dispatch => {
     dispatch(beginAjaxCall());
-    return PersonApi.savePerson(person).then(person => {
-      person.id ? dispatch(updatePersonSuccess(person)) : dispatch(savePersonSuccess(person));
+    return PersonApi.savePerson(person).then(savedPersonList => {
+      dispatch(savePersonSuccess(savedPersonList));
+    }).catch(error => {
+      throw (error);
+    });
+  };
+}
+
+export function updatePerson(person) {
+  return dispatch => {
+    dispatch(beginAjaxCall());
+    return PersonApi.updatePerson(person).then(updatedPersonList => {
+      dispatch(updatePersonSuccess(updatedPersonList));
     }).catch(error => {
       throw (error);
     });

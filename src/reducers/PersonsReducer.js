@@ -7,10 +7,11 @@ export default function PersonReducer(state = initialState.persons, action) {
       return action.persons;
 
     case types.SAVE_PERSON_SUCCESS:
-      return [...state, Object.assign({}, action.savedPerson)];
+      return action.savedPersonList;
 
     case types.UPDATE_PERSON_SUCCESS:
-      return [...state.filter(person => person.id !== action.updatedPerson.id), Object.assign({}, action.updatedPerson)];
+      // return [...state.filter(person => person.id !== action.updatedPerson.id), Object.assign({}, action.updatedPerson)];
+      return action.updatedPersonList;
 
     default:
       return state;
