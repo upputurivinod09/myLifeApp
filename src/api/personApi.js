@@ -70,47 +70,19 @@ class PersonApi {
       });
   }
 
-  // static savePerson(person) {
-  //   person = Object.assign({}, person); // to avoid manipulating object passed in.
-  //   return new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       console.log("Person"+person);
-  //       // Simulate server-side validation
-  //       const minPersonNameLength = 3;
-  //       if (person.firstName.length < minPersonNameLength) {
-  //         reject(`First Name must be at least ${minPersonNameLength} characters.`);
-  //       }
-  //
-  //       if (person.lastName.length < minPersonNameLength) {
-  //         reject(`Last Name must be at least ${minPersonNameLength} characters.`);
-  //       }
-  //
-  //       if (person.id) {
-  //         const existingPersonIndex = persons.findIndex(a => a.id == person.id);
-  //         persons.splice(existingPersonIndex, 1, person);
-  //       } else {
-  //         //Just simulating creation here.
-  //         //The server would generate ids for new authors in a real app.
-  //         //Cloning so copy returned is passed by value rather than by reference.
-  //         person.id = generateId(person);
-  //         persons.push(person);
-  //       }
-  //
-  //       resolve(person);
-  //     }, delay);
-  //   });
-  // }
-
-  static deletePerson(personId) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const indexOfPersonToDelete = persons.findIndex(person => {
-          person.id == person;
-        });
-        persons.splice(indexOfPersonToDelete, 1);
-        resolve();
-      }, delay);
-    });
+  static deletePerson(person) {
+    let url = '/person/delete';
+    return fetch(url, {
+      method: 'delete',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(person)
+    })
+      .then(data => {
+        return data.json();
+      })
+      .catch(error => {
+        throw error;
+      });
   }
 
   static loadPersonByFirstName(personFirstName) {

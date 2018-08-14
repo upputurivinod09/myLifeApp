@@ -75,7 +75,6 @@ class ManagePersonPage extends React.Component {
 }
 
 ManagePersonPage.propTypes = {
-  // person: PropTypes.object.isRequired,
   params: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };

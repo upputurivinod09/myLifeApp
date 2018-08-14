@@ -4,15 +4,15 @@ import PersonList from './PersonList';
 import * as personActions from '../../actions/personActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import toastr from 'toastr';
 
 class PersonPage extends React.Component {
 
-  componentDidMount() {
-    this.props.actions.loadPersons();
-  }
-
-  redirectToAddPersonPage() {
-    browserHistory.push("/addPerson");
+  onDelete(person) {
+    this.props.actions.deletePerson(person)
+      .catch(error => {
+        toastr.error(error);
+      });
   }
 
   render () {
@@ -20,7 +20,7 @@ class PersonPage extends React.Component {
       <div>
         <h1>Persons</h1>
         <input type="submit" value="Add Person" className="btn btn-primary" onClick={this.redirectToAddPersonPage}/>
-        <PersonList persons={this.props.persons}/>
+        <PersonList persons={this.props.persons} onDelete={this.onDelete.bind(this)}/>
       </div>
     );
   }

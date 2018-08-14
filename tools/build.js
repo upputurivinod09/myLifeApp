@@ -8,11 +8,11 @@ var webpackConfig;
 
 if(process.env.NODE_ENV == 'production') {
   webpackConfig = webpackConfig_prod;
+  console.log('Generating minified bundle for production');
 } else {
   webpackConfig = webpackConfig_dev;
+  console.log('Generating minified bundle for dev');
 }
-
-console.log('Generating minified bundle for production');
 
 webpack(webpackConfig).run((err, stats) => {
   if (err) {

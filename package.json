@@ -13,7 +13,7 @@
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
     "build:html": "babel-node tools/buildHtml.js",
-    "build": "babel-node tools/build.js",
+    "build": "babel-node tools/build.js ",
     "prodbuild": "set NODE_ENV=production && babel-node tools/build.js"
   },
   "dependencies": {

@@ -20,6 +20,12 @@ export function updatePersonSuccess(updatedPersonList) {
   };
 }
 
+export function deletePersonSuccess(updatedPersonList) {
+  return {
+    type: types.DELETE_PERSON_SUCCESS, updatedPersonList
+  };
+}
+
 export function loadPersons() {
   return dispatch => {
     dispatch(beginAjaxCall());
@@ -47,6 +53,17 @@ export function updatePerson(person) {
     dispatch(beginAjaxCall());
     return PersonApi.updatePerson(person).then(updatedPersonList => {
       dispatch(updatePersonSuccess(updatedPersonList));
+    }).catch(error => {
+      throw (error);
+    });
+  };
+}
+
+export function deletePerson(person) {
+  return dispatch => {
+    dispatch(beginAjaxCall());
+    return PersonApi.deletePerson(person).then(updatedPersonList => {
+      dispatch(deletePersonSuccess(updatedPersonList));
     }).catch(error => {
       throw (error);
     });
